@@ -19,7 +19,7 @@
     <body>
         <form>
             <center>
-                <h1>Acceso del empleado</h1>
+                <h1>Acceso del Administrador</h1>
                 <div id="menu">
                     <ul>
                             <li><a href="Conocenos.jsp"  class = "normalMenu">Conocenos</a></li>

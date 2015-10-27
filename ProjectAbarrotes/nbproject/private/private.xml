@@ -11,6 +11,11 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/TiendaAbarrotes/ProjectAbarrotes/web/InsertarCliente.jsp</file>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/TiendaAbarrotes/ProjectAbarrotes/src/java/Beans/ClienteDAO.java</file>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/TiendaAbarrotes/ProjectAbarrotes/web/Acceso.jsp</file>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/TiendaAbarrotes/ProjectAbarrotes/src/java/Mapeos/Cliente.java</file>
+        </group>
     </open-files>
 </project-private>

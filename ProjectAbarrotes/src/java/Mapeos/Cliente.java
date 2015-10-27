@@ -19,11 +19,13 @@ public class Cliente  implements java.io.Serializable {
      private String password;
      private Paquete paquete;
      private Pedido pedido;
-
+     private String direccion;
+     private Integer telefono;
+     private Integer carrito;
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellPat, String apellMat, String fechaNac, String rfc, String correo, String password, Paquete paquete, Pedido pedido) {
+    public Cliente(String nombre, String apellPat, String apellMat, String fechaNac, String rfc, String correo, String password, Paquete paquete, Pedido pedido,String direccion,Integer telefono,Integer carrito) {
        this.nombre = nombre;
        this.apellPat = apellPat;
        this.apellMat = apellMat;
@@ -33,6 +35,9 @@ public class Cliente  implements java.io.Serializable {
        this.password = password;
        this.paquete = paquete;
        this.pedido = pedido;
+       this.direccion = direccion;
+       this.telefono = telefono;
+       this.carrito = carrito;
     }
    
     public Integer getIdCliente() {
@@ -105,10 +110,24 @@ public class Cliente  implements java.io.Serializable {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
-
-
-
-
+     public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    public String getDireccion() {
+        return this.direccion;
+    }
+     public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+    public Integer getTelefono() {
+        return this.telefono;
+    }
+    public void setCarrito(Integer carrito) {
+        this.carrito = carrito;
+    }
+    public Integer getCarrito() {
+        return this.carrito;
+    }
 }
 
 
