@@ -57,7 +57,7 @@
                 </tbody>
             </table>
             <input type="submit" value="Eliminar Seleccionados" name="eliminar" />
-            <input type="button" onclick=" location.href = 'InsertarProducto.jsp' " value="Nuevo Producto" name="boton" />
+            <input type="button" onclick=" location.href = 'InsertarProducto.jsp' " value="Nuevo Producto" name="boton1" />
             <input type="button" onclick=" location.href = 'ModificarProducto.jsp' " value="Actualizar Producto" name="boton" />
         </form>
         <%

@@ -67,6 +67,7 @@
                 <%
                     if ((request.getParameter("actualizar") != null)) {
                 %>
+                <h2><%=valor%></h2>
                 <h2>Insertar producto</h2>
                 <table border="1"  cellpadding="0" cellspacing="0" height="40%" width="25">
                     <jsp:useBean id="producto" scope="page" class="Mapeos.Cliente" />
@@ -75,6 +76,7 @@
                         String[] chbProductos = request.getParameterValues("cbactores");
                         for (int i = 0; i <= chbProductos.length; i++) {
                             if (i == chbProductos.length) {
+                                
                     %>
                     <tr>
                         <td>

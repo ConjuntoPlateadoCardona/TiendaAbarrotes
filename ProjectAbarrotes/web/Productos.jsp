@@ -93,7 +93,7 @@
                         %>
                     </tbody>
                 </table>
-                <input type="button" onclick=" location.href = 'registro.jsp'" value="Registrarse" name="boton" />
+                <input type="button" onclick=" location.href = 'registro.jsp'" value="Registrarse" name="boton1" />
                 <input type="button" onclick=" location.href = 'buscador.jsp'" value="Buscar" name="boton" />
             </CENTER>
         </form>

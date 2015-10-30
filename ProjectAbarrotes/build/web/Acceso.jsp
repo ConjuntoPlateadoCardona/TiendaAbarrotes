@@ -2,22 +2,34 @@
 <%@page import="Beans.ClienteDAO" %>
 <%@page import="Mapeos.Cliente" %>
 <jsp:useBean id="uname" scope="page" class="Mapeos.Cliente" />
-
+<%@page session="true" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css.css" title="style">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+        <title> Login</title>
+        <script>
+            function enviar_formulario(){
+                document.formulario1.submit();
+            }
+        </script>
     </head>
     <body>
-        <form>
+        <form method="post">
             <center>
                 <h1>Acceso del cliente</h1>
                 <div id="menu">
                     <ul>
-                            <li><a href="Conocenos.jsp"  class = "normalMenu">Conocenos</a></li>
+                        <li>
+                            <c:url value="/Conocenos.jsp" var="itemDetailsURL">
+                            <c:param name="itemId" value="Dev"/>
+                            </c:url>
+                            <a href="<c:out value="${itemDetailsURL}"/>"  class = "normalMenu">Conocenos</a></li>
                             <li><a href="Productos.jsp"  class = "normalMenu">Productos </a></li>
                             <li><a href="Contacto.jsp"  class = "normalMenu">Contacto</a></li>
                             <li><a href="Acceso.jsp"  class = "normalMenu">Ingresar</a></li>
@@ -40,7 +52,7 @@
                             <td><input type="password" name="contrasenia" value="" /></td>
                         </tr>
                         <tr>
-                            <td><input type="submit" name="enviar" value="Entrar" /></td>
+                            <td><input type="submit" name="enviar" value="Entrar" onkeypress="if(event.keyCode== 13) enviar_formulario()" /></td>
                             <td><input type="reset" value="Limpiar" /></td>
                         </tr>
 
