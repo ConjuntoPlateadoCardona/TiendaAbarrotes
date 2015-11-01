@@ -21,7 +21,9 @@
         %>
         <form>
             <HR> 
-            <I>Para eliminar un producto seleccionarlo en la columna final <a href="AutentificarEmpleado.jsp">  Cerrar Sesion</a></I>.
+            <I>Para eliminar un producto seleccionarlo en la columna final <a href="AutentificarEmpleado.jsp">  Cerrar Sesion
+                <% session.invalidate(); %>
+                </a></I>.
             </HR>
             <table border="1">
                 <thead>
@@ -59,15 +61,18 @@
             <input type="submit" value="Eliminar Seleccionados" name="eliminar" />
             <input type="button" onclick=" location.href = 'InsertarProducto.jsp' " value="Nuevo Producto" name="boton1" />
             <input type="button" onclick=" location.href = 'ModificarProducto.jsp' " value="Actualizar Producto" name="boton" />
+             <input type="button" onclick=" location.href = 'InsertarProducto.jsp' " value="Nuevo Producto" name="boton2" />
         </form>
         <%
             if (request.getParameter("eliminar") != null) {
                 String[] chbproductos = request.getParameterValues("cbactores");
-                for (int i = 0; i < chbproductos.length; i++) {
-                    out.println("<li>" + chbproductos[i]);
-                    productoDAO.eliminaProducto(Short.valueOf(chbproductos[i]));
-                    out.println(" El producto ha sido eliminado");
-                }
+                try{
+                    for (int i = 0; i < chbproductos.length; i++) {
+                        out.println("<li>" + chbproductos[i]);
+                        productoDAO.eliminaProducto(Short.valueOf(chbproductos[i]));
+                        out.println(" El producto ha sido eliminado");
+                    }
+                }catch(NullPointerException e){}
             }
         %>
     </body>

@@ -38,17 +38,26 @@
             List<Cliente> listaclientes = clienteDAO.obtenListaCliente();
             int valor = 0;
         %>
-        <form>
+        <form method="post"  action="Ventas.jsp">
             <CENTER>
                 <HR> 
                 <I>Selecciona en la columna final el producto que deseas comprar.</I>.
                 </HR>
-                <%  for (Cliente b : listaclientes) {
+                <%! String usuario;
+                    int pos;
                 %>
-                <I>----------  </I><tr><I>BIENBENID@</I>.<%= b.getNombre()%><I></tr> 
-                    <I>----------  </I><th>SU CARRITO</I>. <%= b.getCarrito()%></th>
+                <%  
+                    usuario = request.getParameter("usuario");
+                    for(int i = 0;i<listaclientes.size();i++){
+                        if(listaclientes.get(i).getNombre().equals(usuario)){
+                            pos=i;
+                        }
+                    }
+                %>
+                <I>----------  </I><tr><I>BIENBENID@</I>.<%= usuario%><I></tr> 
+                    <I>----------  </I><th>SU CARRITO</I>. <%= listaclientes.get(pos).getCarrito()%></th>
                 <I>----------  </I><a href="Acceso.jsp">Cerrar Sesion</a>
-                    <% }
+                    <% 
                     %>
                 <table border="1">
                     <thead>
@@ -62,7 +71,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%  for (Producto a : listaproductos) {
+                        <% 
+                        
+                        for (Producto a : listaproductos) {
                         %>
                         <tr>
                             <td><%= a.getNombreProducto()%></td>
@@ -71,11 +82,12 @@
                             <td><%= a.getPrecioUni()%></td>
                             <td><%= a.getFech()%></td>
                             <td><%= a.getMarca()%></td>
+                            <%  %>
                             <td><input type="checkbox" name="cbactores" value="<%=a.getIdProducto()%>"/></td>
                         </tr>
                         <%
-                                valor = a.getIdProducto();
-                            }
+                        }
+                            usuario = request.getParameter("usuario");
                         %>
                     </tbody>
                 </table>
@@ -91,8 +103,8 @@
                         String[] chbproductos = request.getParameterValues("cbactores");
                         for (int i = 0; i <= chbproductos.length; i++) {
                             if (i == chbproductos.length) {
-                                compra = listaclientes.get(i - 1).getCarrito() - listaproductos.get(i - 1).getExistencias().intValue();
-                                listaclientes.get(i - 1).setCarrito(compra);
+                                compra = listaclientes.get(pos).getCarrito() - listaproductos.get(i - 1).getExistencias().intValue();
+                                listaclientes.get(pos).setCarrito(compra);
                                 //listaclientes.remove(i - 1).getCarrito();
                                 out.println("*Compra efectuada*  " + "Carrito actual: " + compra);
                                 //var1.setExistencias(var1.getExistencias() - 1);

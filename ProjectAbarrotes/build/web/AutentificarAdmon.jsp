@@ -17,7 +17,7 @@
         <title>Acceso</title>
     </head>
     <body>
-        <form>
+        <form method="post">
             <center>
                 <h1>Acceso del Administrador</h1>
                 <div id="menu">
@@ -66,7 +66,7 @@
                 uname.setPassword(request.getParameter("contrasenia"));
                 if ((uname.getNombreEmpleado().toString().equals(listaEmpleados.get(i).getNombreEmpleado().toString()))
                         && (uname.getPassword().toString().equals(listaEmpleados.get(i).getPassword().toString()))) {
-                    if (listaEmpleados.get(i).getTipoUsuario().toString().equals("Empleado") || listaEmpleados.get(i).getTipoUsuario().toString().equals("Administrador")) {
+                    if (listaEmpleados.get(i).getTipoUsuario().toString().equals("Administrador")) {
                         us = true;
         %>
     <center>
@@ -75,7 +75,10 @@
         <input type="button" onclick=" location.href = 'EliminarProducto.jsp' " value="Productos" name="boton1" />
         <P> <B>PORTAL PARA LA CONFIGURACION DE CLIENTES</B> </P>
         <input type="button" onclick=" location.href = 'EliminarCliente.jsp' " value="Clientes" name="boton" />
+         <P> <B>Ingresar Nuevo Empleado</B> </P>
+        <input type="button" onclick=" location.href = 'InsertarEmpleado.jsp' " value="Registrar Empleado" name="boton2" />
     </center>
+        
     <%  break;
     } else {
         us = true;

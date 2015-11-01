@@ -3,7 +3,7 @@
     Created on : 3/01/2014, 11:04:00 AM
     Author     : Search
 --%>
-
+<%@page import="org.apache.jasper.JasperException" %> 
 <%@page import="Beans.ClienteDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="css.css" title="style">
@@ -230,8 +230,10 @@
                 <a href="Principal.html">Pagina Principal</a>
             </CENTER>
         </form> 
-        <%        } else {%>
+        <%        } else {
+                try{ %>
         <jsp:useBean id="cliente" scope="page" class="Mapeos.Cliente" />
+        
         <jsp:setProperty name="cliente" property="*" />
         <%
             ClienteDAO registro = new ClienteDAO();
@@ -249,12 +251,13 @@
                     <th>RFC</th>
                     <th>Email</th>
                     <th>Contraseña</th>
-                    <%--<th>Dirección</th>
-                    <th>Telefono</th>--%>
+                    <th>Dirección</th>
+                    <th>Telefono</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
+                    <% %>
                     <td><%= cliente.getIdCliente()%></td>
                     <td><%= cliente.getNombre()%></td>
                     <td><%= cliente.getApellPat()%></td>
@@ -263,8 +266,9 @@
                     <td><%= cliente.getRfc()%></td>
                     <td><%= cliente.getCorreo()%></td>
                     <td><%= cliente.getPassword()%></td>
-                    <%--<td><%= cliente.getDireccion()%></td>
-                    <td><%= cliente.getTelefono()%></td>--%>
+                    <td><%= cliente.getDireccion()%></td>
+                    <td><%= cliente.getTelefono()%></td>
+                    <% %>
                 </tr>
             <h2>Registro completado</h2>
         </tbody>
@@ -272,7 +276,8 @@
     <% } else {%>
     <h2>Lo sentimos, no se pudo crear la cuenta</h2>
     <%}
-        }
+        }catch(NumberFormatException e){}
+            }
     %>
 </body>
 </html>

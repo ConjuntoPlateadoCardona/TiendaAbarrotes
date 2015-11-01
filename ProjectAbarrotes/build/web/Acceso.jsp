@@ -20,7 +20,7 @@
         </script>
     </head>
     <body>
-        <form method="post">
+        <form method="post" action="Ventas.jsp">
             <center>
                 <h1>Acceso del cliente</h1>
                 <div id="menu">
@@ -45,17 +45,16 @@
                     <tbody>
                         <tr>
                             <td>Nombre</td>
-                            <td><input type="text" name="usuario" value="" /></td>
+                            <td><input type="text" name="usuario" value=""  /></td>
                         </tr>
                         <tr>
                             <td>Password</td>
                             <td><input type="password" name="contrasenia" value="" /></td>
                         </tr>
                         <tr>
-                            <td><input type="submit" name="enviar" value="Entrar" onkeypress="if(event.keyCode== 13) enviar_formulario()" /></td>
+                            <td><input type="submit" name="enviar" value="Entrar" onkeypress="if(event.keyCode== 13) enviar_formulario();" /></td>
                             <td><input type="reset" value="Limpiar" /></td>
                         </tr>
-
                     </tbody>
                 </table>
                 <a href="Principal.html">Pagina Principal</a>
@@ -64,9 +63,13 @@
         <% if (request.getParameter("enviar") != null) {%>
 
         <jsp:setProperty name="uname" property="*" />
+        
+                       
         <%
             int i = 1;
             boolean us = false;
+            
+            String usuario;
             ClienteDAO empDAO = new ClienteDAO();
             List<Cliente> listaClientes = empDAO.obtenListaCliente();
             for (i = 0; i < listaClientes.size(); i++) {
@@ -75,9 +78,12 @@
                 if ((uname.getNombre().toString().equals(listaClientes.get(i).getNombre().toString()))
                         && (uname.getPassword().toString().equals(listaClientes.get(i).getPassword().toString()))) {
                     us = true;
+                     usuario = uname.getNombre().toString();
+        
         %>
     <center>
         <h3>Bienvenido <% out.println(uname.getNombre().toString());%></h3>
+        
         <input type="button" onclick=" location.href = 'Ventas.jsp'" value="Consultar los productos" name="boton" />
     </center>
     <%    break;

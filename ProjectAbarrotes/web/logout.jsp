@@ -1,6 +1,6 @@
 
 
-<%@page import="Beans.Cliente"%>
+<%@page import="Beans.ClienteDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%
     session.setAttribute("id_cliente", null);

@@ -6,9 +6,15 @@
 
 <%@page import="Beans.ProductoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true" import="java.util.*;" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;">
+        <!-- cosas que ocupa el calendario-->
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="screen"
+              href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+        <!-- aqui terminan las cosas que ocupa el clendario-->  
         <title>JSP Page</title>
         <script type="text/javascript">
             function permite(elEvento, permitidos) { // Variables que definen los caracteres permitidos 
@@ -134,10 +140,31 @@
                     </tr>
                     <tr>
                         <td>
-                            <input id="Caducidad" name="caducidad" placeholder="Caducidad"
-                                   title="Caducidad" type="text" value="" size="25"
-                                   onkeypress="return permite(event, 'num_car')"/>
-                        </td>
+                            <div id="datetimepicker" class="input-append date">
+                                <input id="Caducidad" type="text" name="caducidad" title="Caducidad" placeholder="Caducidad"/>
+                                 <span class="add-on">
+                                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                </span>
+                            </div>
+                            <script type="text/javascript"
+                                    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+                            </script> 
+                            <script type="text/javascript"
+                                    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+                            </script>
+                            <script type="text/javascript"
+                                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+                            </script>
+                            <script type="text/javascript"
+                                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+                            </script>
+                            <script type="text/javascript">
+                                $('#datetimepicker').datetimepicker({
+                                    format: 'yyyy-MM-dd',
+                                    language: 'pt-EN'
+                                });
+                            </script>
+                                </td>
                     </tr>
                     <tr>
                         <td>
@@ -161,9 +188,30 @@
                         </td>
                     </tr>
                     <td>
-                        <input id="Fech" name="fech" placeholder="Fecha"
-                               title="Fecha" type="text" value="" size="25"
-                               onkeypress="return permite(event, 'num_car')"/>
+                        <div id="datetimepicker2" class="input-append date">
+                            <input id="Fech" type="text" name="fech" title="Fecha" placeholder="Fecha" />
+                                 <span class="add-on">
+                                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                </span>
+                            </div>
+                            <script type="text/javascript"
+                                    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+                            </script> 
+                            <script type="text/javascript"
+                                    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+                            </script>
+                            <script type="text/javascript"
+                                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+                            </script>
+                            <script type="text/javascript"
+                                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+                            </script>
+                            <script type="text/javascript">
+                                $('#datetimepicker2').datetimepicker({
+                                    format: 'yyyy-MM-dd',
+                                    language: 'pt-EN'
+                                });
+                            </script>
                     </td>
                     </tr>
                     <tr>
