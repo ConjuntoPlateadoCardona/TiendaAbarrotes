@@ -20,7 +20,7 @@
             List<Cliente> listaClientes = clienteDAO.obtenListaCliente();
             int valor = 0;
         %>
-        <form>
+        <form method="post">
             <CENTER>
                 <HR> 
                 <I>Para modificar un cliente seleccionar las filas desde el primer cliente hasta el que se desea modificar en la columna final.<a href="AutentificarEmpleado.jsp">Cerrar Sesion</a> </I>.
@@ -55,7 +55,7 @@
                         <td><%= a.getDireccion() %></td>
                         <td><%= a.getTelefono() %></td>
                         <td><%= a.getCarrito() %></td>
-                        <td><input type="checkbox" name="cbactores" value="<%=a.getIdCliente()%>"/></td>
+                        <td><input type="checkbox" name="cbactores" id="val" value="<%=a.getIdCliente()%>"/></td>
                     </tr>
                     <%
                             valor = a.getIdCliente().intValue();

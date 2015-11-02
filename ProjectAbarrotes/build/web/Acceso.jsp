@@ -25,15 +25,26 @@
                 <h1>Acceso del cliente</h1>
                 <div id="menu">
                     <ul>
-                        <li>
-                            <c:url value="/Conocenos.jsp" var="itemDetailsURL">
+                        <c:url value="/Conocenos.jsp" var="itemDetailsURL">
                             <c:param name="itemId" value="Dev"/>
-                            </c:url>
-                            <a href="<c:out value="${itemDetailsURL}"/>"  class = "normalMenu">Conocenos</a></li>
-                            <li><a href="Productos.jsp"  class = "normalMenu">Productos </a></li>
-                            <li><a href="Contacto.jsp"  class = "normalMenu">Contacto</a></li>
-                            <li><a href="Acceso.jsp"  class = "normalMenu">Ingresar</a></li>
-                            <li> <a href="registro.jsp"  class = "normalMenu">Registrate_Aquí</a></li>
+                        </c:url>
+                        <c:url value="/Productos.jsp" var="itemProducto">
+                            <c:param name="itemIdPro" value="DevProducto"/>
+                        </c:url>
+                        <c:url value="/Contacto.jsp" var="itemContacto">
+                            <c:param name="itemIdCon" value="DevContacto"/>
+                        </c:url>
+                        <c:url value="/Acceso.jsp" var="itemAcceso">
+                            <c:param name="itemIdAcc" value="DevAcceso"/>
+                        </c:url>
+                        <c:url value="/registro.jsp" var="itemRegistro">
+                            <c:param name="itemIdReg" value="DevRegistro"/>
+                        </c:url>
+                        <li><a href="<c:out value="${itemDetailsURL}"/>"  class = "normalMenu">Conocenos</a></li>
+                        <li><a href="<c:out value="${itemProducto}"/>"  class = "normalMenu">Productos </a></li>
+                        <li><a href="<c:out value="${itemContacto}"/>"  class = "normalMenu">Contacto</a></li>
+                        <li><a href="<c:out value="${itemAcceso}"/>"  class = "normalMenu">Ingresar</a></li>
+                        <li><a href="<c:out value="${itemRegistro}"/>"  class = "normalMenu">Registrate_Aquí</a></li>
                     </ul>
                 </div>
                 <table border="1" width="30%" cellpadding="3">

@@ -20,7 +20,7 @@
         <% ClienteDAO clienteDAO = new ClienteDAO();
             List<Cliente> listaClientes = clienteDAO.obtenListaCliente();
         %>
-        <form>
+        <form method="post">
             <HR> 
             <I>Para eliminar un cliente seleccionarlo en la columna final <a href="AutentificarEmpleado.jsp">  Cerrar Sesion</a></I>.
             </HR>

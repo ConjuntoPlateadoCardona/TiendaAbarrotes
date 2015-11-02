@@ -9,6 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;">
+        <!-- cosas que ocupa el calendario-->
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="screen"
+              href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+        <!-- aqui terminan las cosas que ocupa el clendario-->  
         <title>JSP Page</title>
         <script type="text/javascript">
             function permite(elEvento, permitidos) { // Variables que definen los caracteres permitidos 
@@ -66,43 +71,43 @@
                 //validamos campo2
                 valor2 = document.getElementById("password").value;
 
-                if (isNaN(valor2)) {
+                if (valor2 == "" || valor2==null) {
                     alert("*Campo vacio...Indica un acontraseña");
                     //return false; 
                 }
 
                 valor3 = document.getElementById("Apell_pat_empleado").value;
 
-                if (isNaN(valor3)) {
-                    alert("*Campo vacio...Coloca apellido");
+                if (valor3 == "" || valor3==null ||  !/^[A-Za-z\_\-\.\,\s]+$/.test(valor3)) {
+                    alert("*Campo vacio...Coloca apellido Paterno");
                     //return false; 
                 }
 
                 valor4 = document.getElementById("Apell_mat_empleado").value;
 
-                if (isNaN(valor4)) {
-                    alert("*Campo vacio...coloca apellido");
+                if (valor4 == "" || valor4==null ||  !/^[A-Za-z\_\-\.\,\s]+$/.test(valor4)) {
+                    alert("*Campo vacio...coloca apellido Materno");
                     //return false; 
                 }
 
                 valor5 = document.getElementById("Fec_nac").value;
 
-                if (isNaN(valor5)) {
+                if (valor5 == "" || valor5==null) {
                     alert("*Campo vacio...Indica la Fecha");
                     //return false; 
                 }
 
                 valor6 = document.getElementById("RFCE").value;
 
-                if (isNaN(valor6)) {
+                if (valor6 == "" || valor6==null) {
                     alert("*Campo vacio...Indica su RFCE");
                     //return false; 
                 }
                 valor7 = document.getElementById("Salario").value;
 
-                if (isNaN(valor7)) {
+                if (valor7 == "" || valor7==null || !/^([0-9])*$/.test(valor7)) {
                     alert("*Campo vacio...Salario");
-                    //return false; 
+                    return false; 
                 }
 
                 //validamos select
@@ -129,7 +134,7 @@
                 indice4 = document.getElementById("tipoUsuario").selectedIndex;
                 if (indice4 == null || indice4 == 0) {
                     alert("*No se ha seleccionado tipo de Usuario");
-                    //return false;
+                    return false;
                 }
 
 
@@ -144,7 +149,7 @@
         <%
             if (request.getParameter("submit") == null) {
         %> 
-        <form onsubmit="return validacion()">
+        <form onsubmit="return validacion()" method="post">
             <CENTER>
                 <HR>
                 <I>Insertar empleado.<a href="AutentificarAdmon.jsp">Cerrar Sesion</a></I>
@@ -176,8 +181,31 @@
                     </tr>
                     <tr>
                         <td>
-                            <input id="Fec_nac" name="fechaNac" placeholder="Fecha de nacimiento "
-                                   title="Fecha de nacimiento" type="text" value="" size="25" onkeypress="return permite(event, 'num_car')"/>
+                            <div id="datetimepicker2" class="input-append date">
+                            <input id="Fec_nac" type="text" name="fechNac" title="Fecha de nacimiento" 
+                                   placeholder="Fecha de nacimiento" />
+                                 <span class="add-on">
+                                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                </span>
+                            </div>
+                            <script type="text/javascript"
+                                    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+                            </script> 
+                            <script type="text/javascript"
+                                    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+                            </script>
+                            <script type="text/javascript"
+                                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+                            </script>
+                            <script type="text/javascript"
+                                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+                            </script>
+                            <script type="text/javascript">
+                                $('#datetimepicker2').datetimepicker({
+                                    format: 'yyyy-MM-dd',
+                                    language: 'pt-EN'
+                                });
+                            </script>
                         </td>
                     </tr>
                     <tr>

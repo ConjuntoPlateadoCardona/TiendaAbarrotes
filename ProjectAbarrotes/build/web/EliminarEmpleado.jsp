@@ -19,7 +19,7 @@
         <% EmpleadoDAO empleadoDAO = new EmpleadoDAO();
             List<Empleado> listaEmpleados = empleadoDAO.obtenListaEmpleado();
         %>
-        <form>
+        <form method="post">
             <HR> 
             <I>Para eliminar un empleado seleccionarlo en la columna final <a href="AutentificarAdmon.jsp">  Cerrar Sesion</a></I>.
             </HR>

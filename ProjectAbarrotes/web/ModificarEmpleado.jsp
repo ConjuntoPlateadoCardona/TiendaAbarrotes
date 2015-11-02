@@ -20,7 +20,7 @@
             List<Empleado> listaEmpleados = empleadoDAO.obtenListaEmpleado();
             int valor = 0;
         %>
-        <form>
+        <form method="post"> 
             <CENTER>
                 <HR> 
                 <I>Para modificar un empleado seleccionar las filas desde el primer empleado hasta el que se desea modificar en la columna final.<a href="AutentificarAdmon.jsp">Cerrar Sesion</a> </I>.

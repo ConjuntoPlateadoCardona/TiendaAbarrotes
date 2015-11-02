@@ -127,13 +127,13 @@ public final class ModificarCliente_jsp extends org.apache.jasper.runtime.HttpJs
       out.print(a.getIdCliente());
       out.write("\"/></td>\n");
       out.write("                    </tr>\n");
-      out.write("                </table>\n");
-      out.write("                     ");
+      out.write("                    ");
 
                             valor = a.getIdCliente().intValue();
                         }
                     
       out.write("\n");
+      out.write("                </table>\n");
       out.write("                <input type=\"submit\" value=\"Actualizar seleccionado\" name=\"actualizar\" />\n");
       out.write("                <a href=\"EliminarCliente.jsp\">Regresar</a>\n");
       out.write("                ");
@@ -164,7 +164,7 @@ public final class ModificarCliente_jsp extends org.apache.jasper.runtime.HttpJs
                         String[] chbProductos = request.getParameterValues("cbactores");
                         for (int i = 0; i <= chbProductos.length; i++) {
                             if (i == chbProductos.length) {
-                                if(valor == listaClientes.get(valor).getIdCliente()){
+                                
                     
       out.write("\n");
       out.write("                    <tr>\n");
@@ -259,7 +259,6 @@ public final class ModificarCliente_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("        </form>\n");
       out.write("        ");
 
-                        }
                     }
                 }
             }

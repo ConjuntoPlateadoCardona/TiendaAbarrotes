@@ -19,7 +19,7 @@
         <% ProductoDAO productoDAO = new ProductoDAO();
             List<Producto> listaproductos = productoDAO.obtenListaProducto();  
         %>
-        <form>
+        <form method="post">
             <HR> 
             <I>Para eliminar un producto seleccionarlo en la columna final <a href="AutentificarEmpleado.jsp">  Cerrar Sesion
                 <% session.invalidate(); %>
@@ -61,7 +61,7 @@
             <input type="submit" value="Eliminar Seleccionados" name="eliminar" />
             <input type="button" onclick=" location.href = 'InsertarProducto.jsp' " value="Nuevo Producto" name="boton1" />
             <input type="button" onclick=" location.href = 'ModificarProducto.jsp' " value="Actualizar Producto" name="boton" />
-             <input type="button" onclick=" location.href = 'InsertarProducto.jsp' " value="Nuevo Producto" name="boton2" />
+            
         </form>
         <%
             if (request.getParameter("eliminar") != null) {

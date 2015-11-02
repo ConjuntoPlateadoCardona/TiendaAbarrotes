@@ -7,10 +7,18 @@
 <%@page import="Beans.ClienteDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="css.css" title="style">
+
+<%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- cosas que ocupa el calendario-->
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="screen"
+              href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+        <!-- aqui terminan las cosas que ocupa el clendario-->  
         <title>Clientes</title>
         <script type="text/javascript">
             function permite(elEvento, permitidos) { // Variables que definen los caracteres permitidos 
@@ -70,57 +78,57 @@
                 //validamos campo2
                 valor2 = document.getElementById("Apell_pat").value;
 
-                if (isNaN(valor2)) {
+                if (valor2 == "" || valor2==null ||  !/^[A-Za-z\_\-\.\,\s]+$/.test(valor2)) {
                     alert("*Ingresa Apellido");
                     //return false; 
                 }
 
-                valor3 = document.getElementById("Apell_pat").value;
+                valor3 = document.getElementById("Apell_mat").value;
 
-                if (isNaN(valor3)) {
+                if (valor3 == "" || valor3 ==null ||  !/^[A-Za-z\_\-\.\,\s]+$/.test(valor3)) {
                     alert("*Ingresa Apellido");
                     //return false; 
                 }
 
                 valor4 = document.getElementById("Fecha_nac").value;
 
-                if (isNaN(valor4)) {
+                if (valor4 == "" || valor4==null) {
                     alert("*Ingresa Fecha de nacimiento");
                     //return false; 
                 }
 
                 valor5 = document.getElementById("RFC").value;
 
-                if (isNaN(valor5)) {
+                if (valor5 == "" || valor5==null) {
                     alert("*Ingresa RFC");
                     //return false; 
                 }
-                valor6 = document.getElementById("correo").value;
+                valor6 = document.getElementById("Correo").value;
 
-                if (isNaN(valor6)) {
+                if (valor6 == "" || valor6==null) {
                     alert("*Ingresa e-mail");
                     //return false; 
                 }
 
 
-                valor7 = document.getElementById("password").value;
+                valor7 = document.getElementById("Password").value;
 
-                if (isNaN(valor7)) {
+                if (valor7 == "" || valor7==null) {
                     alert("*Ingresa Contraseña");
                     //return false; 
                 }
 
                 valor8 = document.getElementById("direccion").value;
 
-                if (isNaN(valor8)) {
+                if (valor8 == "" || valor8==null) {
                     alert("*Ingresa Direccion");
                     //return false; 
                 }
                 valor9 = document.getElementById("telefono").value;
 
-                if (isNaN(valor9)) {
+                if (valor9 == "" || valor9==null) {
                     alert("*Ingresa Teefono");
-                    //return false; 
+                    return false; 
                 }
 
                 //validar email
@@ -135,7 +143,7 @@
                 telefono = document.getElementById("telefono").value;
                 if (!(/^\d{9}$/.test(telefono))) {
                     alert("*Telefono no valido");
-                    //return false; 
+                    return false; 
                 }
 
             }
@@ -145,17 +153,32 @@
         <h1>Portal de creacion de cuenta</h1>
         <div id="menu">
             <ul>
-                <li><a href="Conocenos.jsp"  class = "normalMenu">Conocenos</a></li>
-                <li><a href="Productos.jsp"  class = "normalMenu">Productos </a></li>
-                <li><a href="Contacto.jsp"  class = "normalMenu">Contacto</a></li>
-                <li><a href="Acceso.jsp"  class = "normalMenu">Ingresar</a></li>
-                <li> <a href="registro.jsp"  class = "normalMenu">Registrate_Aquí</a></li>
+                 <c:url value="/Conocenos.jsp" var="itemDetailsURL">
+                            <c:param name="itemId" value="Dev"/>
+                        </c:url>
+                        <c:url value="/Productos.jsp" var="itemProducto">
+                            <c:param name="itemIdPro" value="DevProducto"/>
+                        </c:url>
+                        <c:url value="/Contacto.jsp" var="itemContacto">
+                            <c:param name="itemIdCon" value="DevContacto"/>
+                        </c:url>
+                        <c:url value="/Acceso.jsp" var="itemAcceso">
+                            <c:param name="itemIdAcc" value="DevAcceso"/>
+                        </c:url>
+                        <c:url value="/registro.jsp" var="itemRegistro">
+                            <c:param name="itemIdReg" value="DevRegistro"/>
+                        </c:url>
+                        <li><a href="<c:out value="${itemDetailsURL}"/>"  class = "normalMenu">Conocenos</a></li>
+                        <li><a href="<c:out value="${itemProducto}"/>"  class = "normalMenu">Productos </a></li>
+                        <li><a href="<c:out value="${itemContacto}"/>"  class = "normalMenu">Contacto</a></li>
+                        <li><a href="<c:out value="${itemAcceso}"/>"  class = "normalMenu">Ingresar</a></li>
+                        <li><a href="<c:out value="${itemRegistro}"/>"  class = "normalMenu">Registrate_Aquí</a></li>
             </ul>
         </div>
         <%
             if (request.getParameter("submit") == null) {
         %> 
-        <form onsubmit="return validacion()">
+        <form onsubmit="return validacion()" method="post">
             <CENTER>
                 <HR>
                 <I>Crear Cuenta Cliente</I>
@@ -184,9 +207,31 @@
                     </tr>
                     <tr>
                         <td>
-                            <input id="Fecha_nac" name="fechaNac" placeholder="Fecha de nacimiento "
-                                   title="Fecha de nacimiento" type="text" value="" size="25"
-                                   onkeypress="return permite(event, 'num_car')"/>
+                            <div id="datetimepicker" class="input-append date">
+                                <input id="Fecha_nac" type="text" name="fechaNac" title="Fecha de nacimiento"
+                                       placeholder="Fecha de nacimiento" size="25"/>
+                                 <span class="add-on">
+                                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                </span>
+                            </div>
+                            <script type="text/javascript"
+                                    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+                            </script> 
+                            <script type="text/javascript"
+                                    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+                            </script>
+                            <script type="text/javascript"
+                                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+                            </script>
+                            <script type="text/javascript"
+                                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+                            </script>
+                            <script type="text/javascript">
+                                $('#datetimepicker').datetimepicker({
+                                    format: 'yyyy-MM-dd',
+                                    language: 'pt-EN'
+                                });
+                            </script>
                         </td>
                     </tr>
                     <tr>
@@ -273,6 +318,7 @@
             <h2>Registro completado</h2>
         </tbody>
     </table> 
+                <a href="EliminarCliente.jsp"> Regresar</a>
     <% } else {%>
     <h2>Lo sentimos, no se pudo crear la cuenta</h2>
     <%}

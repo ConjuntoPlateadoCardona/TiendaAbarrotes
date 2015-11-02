@@ -11,14 +11,83 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- cosas que ocupa el calendario-->
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="screen"
+              href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+        <!-- aqui terminan las cosas que ocupa el clendario-->  
         <title>Clientes</title>
+        <script>
+             function validacion() {
+
+                //validamos campo1
+                valor1 = document.getElementById("Nombre").value;
+                if (valor1 == null || valor1.length == 0 || /^\s+$/.test(valor1))
+                {
+                    alert("*Campo vacio... Debes coloar Nombre");
+                    //return false; 
+                }
+                valor3 = document.getElementById("Apell_pat").value;
+
+                if (valor3 == "" || valor3==null ||  !/^[A-Za-z\_\-\.\,\s]+$/.test(valor3)) {
+                    alert("*Campo vacio...Coloca apellido Paterno");
+                    //return false; 
+                }
+
+                valor4 = document.getElementById("Apell_mat").value;
+
+                if (valor4 == "" || valor4==null ||  !/^[A-Za-z\_\-\.\,\s]+$/.test(valor4)) {
+                    alert("*Campo vacio...coloca apellido Materno");
+                   // return false; 
+                }
+
+                valor5 = document.getElementById("Fech_nac").value;
+
+                if (valor5 == "" || valor5==null) {
+                    alert("*Campo vacio...Indica la Fecha");
+                    //return false; 
+                }
+
+                valor6 = document.getElementById("RFC").value;
+
+                if (valor6 == "" || valor6==null) {
+                    alert("*Campo vacio...Indica su RFC");
+                    //return false; 
+                }
+                valor7 = document.getElementById("Correo").value;
+
+                if (valor7 == "" || valor7==null ) {
+                    alert("*Campo vacio...Salario");
+                    //return false; 
+                }
+                //validamos campo2
+                valor2 = document.getElementById("Password").value;
+
+                if (valor2 == "" || valor2==null) {
+                    alert("*Campo vacio...Indica un acontraseña");
+                    //return false; 
+                }
+                valor8 = document.getElementById("direccion").value;
+
+                if (valor8 == "" || valor8==null ) {
+                    alert("*Campo vacio...Direccion");
+                   // return false; 
+                }
+                valor9 = document.getElementById("telefono").value;
+
+                if (valor9 == "" || valor9==null ) {
+                    alert("*Campo vacio...Telefono");
+                    return false; 
+                }
+            }
+        </script>
     </head>
     <body>
         <h1>Portal de creacion de cuenta</h1>
         <%
             if (request.getParameter("submit") == null) {
         %> 
-        <form>
+        <form onsubmit="return  validacion()" method="post">
             <CENTER>
                 <HR>
                  <I>Crear Cuanta Cliente<a href="AutentificarCliente.jsp">Cerrar Sesion</a></I>
@@ -44,8 +113,30 @@
                     </tr>
                     <tr>
                         <td>
-                            <input id="Fecha_nac" name="fechaNac" placeholder="Fecha de nacimiento "
-                                   title="Fecha de nacimiento" type="text" value="" size="25"/>
+                            <div id="datetimepicker2" class="input-append date">
+                            <input id="Fech_nac" type="text" name="fechNac" title="Fecha de nacimieento" placeholder="Fecha de nacimineto" />
+                                 <span class="add-on">
+                                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                </span>
+                            </div>
+                            <script type="text/javascript"
+                                    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+                            </script> 
+                            <script type="text/javascript"
+                                    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
+                            </script>
+                            <script type="text/javascript"
+                                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+                            </script>
+                            <script type="text/javascript"
+                                    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+                            </script>
+                            <script type="text/javascript">
+                                $('#datetimepicker2').datetimepicker({
+                                    format: 'yyyy-MM-dd',
+                                    language: 'pt-EN'
+                                });
+                            </script>
                         </td>
                     </tr>
                     <tr>
@@ -127,6 +218,7 @@
             <h2>Registro completado</h2>
         </tbody>
     </table> 
+     <a href="EliminarCliente.jsp">Regresar</a>
     <% } else {%>
     <h2>Lo sentimos, no se pudo crear la cuenta</h2>
     <%}

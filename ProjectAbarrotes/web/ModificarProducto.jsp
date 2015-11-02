@@ -20,7 +20,7 @@
             List<Producto> listaProductos = productoDAO.obtenListaProducto();
             int valor = 0;
         %>
-        <form>
+        <form method="post">
             <CENTER>
                 <HR> 
                 <I>Para modificar un producto seleccionar las filas desde el primer producto hasta el que se desea modificar en la columna final.<a href="AutentificarAdmon.jsp">Cerrar Sesion</a> </I>.

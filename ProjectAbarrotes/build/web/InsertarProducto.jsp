@@ -6,7 +6,7 @@
 
 <%@page import="Beans.ProductoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page session="true" import="java.util.*;" %>
+<%@page import="org.hibernate.HibernateException" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;">
@@ -17,6 +17,7 @@
         <!-- aqui terminan las cosas que ocupa el clendario-->  
         <title>JSP Page</title>
         <script type="text/javascript">
+             
             function permite(elEvento, permitidos) { // Variables que definen los caracteres permitidos 
                 var numeros = "0123456789";
                 var caracteres = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
@@ -68,47 +69,49 @@
                     alert("*Falta el Nombre");
                     //return false; 
                 }
-                valor2 = document.getElementById("Presentación").value;
-                if (isNaN(valor2)) {
+                valor2 = document.getElementById("Presentacion").value;
+                if (valor2 == "" || valor2==null ||  !/^[A-Za-z\_\-\.\,\s]+$/.test(valor2)) {
                     alert("*Indica la Presentacion");
                     //return false; 
                 }
                 valor3 = document.getElementById("Caducidad").value;
-                if (isNaN(valor3)) {
+                if (valor3 == "" || valor3==null) {
                     alert("*Indica Caducidad");
                     //return false; 
                 }
                 valor4 = document.getElementById("PProveedor").value;
-                if (isNaN(valor4)) {
+                if (valor4 == "" || valor4 == null) {
                     alert("*Indica Precio del Proveedor");
                     //return false; 
                 }
                 valor5 = document.getElementById("PUnitario").value;
-                if (isNaN(valor5)) {
+                if (valor5 == "" || valor5==null) {
                     alert("*Indica Precio Unitario");
                     //return false; 
                 }
                 valor6 = document.getElementById("Existencias").value;
-                if (isNaN(valor6)) {
+                if (valor6 == "" || valor6==null) {
                     alert("*Indica el numero en existencia");
                     //return false; 
                 }
                 valor7 = document.getElementById("Fech").value;
-                if (isNaN(valor7)) {
+                if (valor7== "" || valor7==null) {
                     alert("*Indica Fecha de llegada");
                     //return false; 
                 }
                 valor8 = document.getElementById("Marca").value;
-                if (isNaN(valor8)) {
+                if (valor8 == "" || valor8==null) {
                     alert("*Indica la Marca");
                     //return false; 
                 }
                 valor9 = document.getElementById("IdProveedor").value;
-                if (isNaN(valo9)) {
+                if (valor9 == "" || valor9==null) {
                     alert("*Inica ID del Proveedor");
-                    //return false; 
+                    return false; 
                 }
-
+                    function enviar_formulario(){
+                document.formulario1.submit();
+                }
             }
         </script>
 
@@ -119,7 +122,7 @@
         <%
             if (request.getParameter("submit") == null) {
         %> 
-        <form onsubmit="return validacion()">
+        <form onsubmit="return validacion()" method="post">
             <CENTER>
                 <HR>
                 <I>Insertar Producto.<a href="AutentificarEmpleado.jsp">Cerrar Sesion</a></I>
@@ -230,7 +233,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input id="submit" name="submit" type="submit" value="Crear">
+                            <input id="submit" name="submit" type="submit" value="Crear" onkeypress="if(event.keyCode== 13) enviar_formulario()">
                             <input id="limpiar" name="limpiar" type="reset" value="Limpiar">
                         </td>
                     </tr>
